@@ -2,7 +2,7 @@
 
 An example of OP_RETURN in action using the BSV SDK. 
 
-![Project Image](https://github.com/DollaHane/Build-Software-NEXTJS-Template-One/blob/main/components/Assets/Thumbnail.png)
+![Project Image](https://github.com/DollaHane/bsv-op_return-example/blob/main/components/Assets/Thumbnail.png)
 
 ## Features
 
