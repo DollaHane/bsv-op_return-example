@@ -55,6 +55,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        zilla: ["Zilla Slab", ...fontFamily.mono],
       },
       keyframes: {
         "accordion-down": {

@@ -1,68 +1,53 @@
-import Link from "next/link"
-import { db } from "@/server/db"
-import { assets, buildings } from "@/server/db/schema"
-import { eq } from "drizzle-orm"
-import { getServerSession } from "next-auth"
-import { redirect } from "next/navigation"
-import { authOptions } from "@/lib/auth/auth-options"
-import { users } from "@/server/db/schema"
+import React from "react"
+import UploadOnChain from "@/components/PageMain/UploadOnChain"
 
-import { assetType, buildingType, taskType } from "@/types/db"
+interface Tx {
+  tx_hash: string,
+      height: number
+}
+
+interface PKHistory {
+  address: string,
+  script: string,
+  result: Tx[],
+  error: string
+}
 
 export default async function AssetsPage() {
 
-  const session = await getServerSession(authOptions)
+  // NOTE: STILL NEED TO FINISH FETCHING AND DECODING
 
-  if (!session) {
-    redirect('/signin')
-  }
+  // const address = process.env.PUBLIC_KEY;
 
-  const user = await db
-    .select({ firstSignin: users.firstSignin })
-    .from(users)
-    .where(eq(users.emailVerified, session.user.email!))
-    
-    if (user[0].firstSignin === true) {
-      redirect("/password-update")
-    }
+  // console.log(`Fetching UTXOs for address: ${address}`);
+  // let addressHistory: PKHistory;
+  // try {
+  //   const response = await axios.get(`https://api.whatsonchain.com/v1/bsv/main/address/${address}/confirmed/history`);
+  //   addressHistory = response.data;
+  // } catch (error) {
+  //   console.error("Error fetching address history:", error);
+  //   return [];
+  // }
 
-  const data = await db
-    .select({
-      building: buildings,
-      assets: assets,
-    })
-    .from(buildings)
-    .leftJoin(assets, eq(buildings.id, assets.location))
+  // console.log("unspent: ", addressHistory);
 
-  const result = data.reduce<
-    Record<number, { building: buildingType; assets: assetType[] }>
-  >((acc, row) => {
-    const building: any = row.building
-    const asset = row.assets
+  // let txData: any = []
+  // addressHistory.result.forEach(async(tx: Tx) => {
+  //   try {
+  //     const response = await axios.get(`https://api.whatsonchain.com/v1/bsv/main/tx/hash/${tx.tx_hash}`)
+  //     console.log('resonse: ', response.data)
+  //     txData.push(JSON.stringify(response.data))
+  //   } catch (error) {
+  //     console.error("Error fetching transaction data:", error);
+  //     return false;
+  //   }
+  // })
 
-    if (!acc[building.id]) {
-      acc[building.id] = { building, assets: [] }
-    }
-
-    if (asset) {
-      acc[building.id].assets.push(asset)
-    }
-
-    return acc
-  }, {})
+  // console.log('txData: ', txData)
 
   return (
-    <section className="container items-center min-h-screen py-5 md:py-10">
-      <h1 className="p-5">Dashboard</h1>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3">
-        {Object.values(result).map(({ building }) => (
-          <Link key={building.name} href={`/building/${building.id}`} className="w-full p-5 transition duration-100 hover:scale-[0.99]">
-            <div className="bg-muted h-20 rounded-lg shadow-md p-2">
-            <h2 key={building.id} className="w-full text-lg font-bold">{building.id}</h2>
-            </div>
-          </Link>
-        ))}
-      </div>
+    <section className="flex flex-col items-center h-screen py-5 md:py-10">
+      <UploadOnChain />
     </section>
   )
 }

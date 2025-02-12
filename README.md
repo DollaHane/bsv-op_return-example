@@ -1,23 +1,16 @@
-# Build Studio Template
+# OP_RETURN File Upload Example
 
-The Build Software starter template. 
-
-A template for kickstarting internal business management projects, the auth is configured as a closed system for internal use.
+An example of OP_RETURN in action using the BSV SDK. 
 
 ![Project Image](https://github.com/DollaHane/Build-Software-NEXTJS-Template-One/blob/main/components/Assets/Thumbnail.png)
 
 ## Features
 
 - Next.js 15 App Directory
-- Next-Auth (Credentials - Sign-in only)
+- BSV Blockchain SDK
 - Shadcn Components
 - Tailwind CSS
-- ZOD Validation
-- Drizzle ORM
-- NEON Database
 - TanStack Query
-- Nodemailer
-- React Email Templates
 - Icons from [Lucide](https://lucide.dev)
 - Dark mode with `next-themes`
 - Tailwind CSS class sorting, merging and linting.
@@ -31,73 +24,37 @@ Download the repository to a directory of your choice and run:
   npm install
 ```
 
+Create a private key using the code provided in './server/createKey.ts'. This should output the following:
+ - A public key / address (Main Net).
+ - A .wif file in the root directory containing the private key.
+
+```bash
+ address: '1E7ZM72qRDSa0rqUhZoMCMb5MAFYFEaKQp'
+```
+
+For additional info see the BSV SDK Documentation link below.
+
 Copy these variables into a .env file:
 
 ```bash
-DATABASE_URL=
+PRIVATE_KEY="<bsv-pvt-key>"
+PUBLIC_KEY="bsv-pub-key"
 
-NEXTAUTH_SECRET=
-NEXTAUTH_URL="http://localhost:3000"
-
-UPSTASH_REDIS_REST_URL=
-UPSTASH_REDIS_REST_TOKEN=
-
-URL="http://localhost:3000"
-
-MAIL="your@domain.com"
-MAIL_USER="your@domain.com"
-MAIL_PASSWORD="password"
+UPSTASH_REDIS_REST_URL='https://<url>'
+UPSTASH_REDIS_REST_TOKEN='<token>'
 ```
 
-Edit the site.ts file in the config folder:
+Start the dev server:
 
 ```bash
-export type SiteConfig = typeof siteConfig
-
-export const siteConfig = {
-  name: "ACME Management",
-  description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
-  businessName: "ACME (Pty) Ltd",
-  domain: "https://www.acme.com",
-  domainShort: "ACME.com",
-  supportEmail: "support@acme.com",
-  mainNav: [
-    {
-      title: "Home",
-      href: "/",
-    },
-  ],
-  links: {
-    dashboard: "/",
-    assets: "/assets",
-    settings: "/settings"
-  },
-}
-```
-
-Push the pre-generated schema to your Neon database and create your first user with a password of "Changeme2024!" (after logging in you will be directed to update your password).
-
-```bash
-  npm run db:push
-```
-
-You can also add a user via Drizzle Studio. Make sure you have Drizzle Kit installed.
-
-```bash
- npm install drizzle-orm -D drizzle-kit
-```
-
-```bash
-  npx drizzle-kit studio
+  npm run dev
 ```
 
 ## Documentation Links
 
-- [Drizzle ORM](https://orm.drizzle.team/docs/get-started/neon-new): Get started with Drizzle and Neon.
-- [Neon DB](https://neon.tech/docs/guides/drizzle): Learn how to connect to Neon from Drizzle.
+- [BSV SDK Docs](https://docs.bsvblockchain.org/intro/quick-start): BSV SDK Docs.
+- [Bitcoin SV Repo](https://github.com/bitcoin-sv): Bitcoin SV Repo
 - [Upstash Rate Limiting](https://upstash.com/blog/nextjs-ratelimiting): Redis rate limiting.
-- [Next Auth Credentials](https://next-auth.js.org/providers/credentials): Sign in with email & password.
 - [Shadcn](https://ui.shadcn.com): UI Components
 
 ## Acknowledgements

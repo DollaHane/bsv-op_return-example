@@ -1,13 +1,13 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "ACME Management",
+  name: "OP_RETURN Example",
   description:
-    "A template for kickstarting internal business management projects, the auth is configured as a closed system for internal use.",
-  businessName: "ACME (Pty) Ltd",
-  domain: "https://www.acme.com",
-  domainShort: "ACME.com",
-  supportEmail: "support@acme.com",
+    "An example of OP_RETURN in action using the BSV SDK.",
+  businessName: "Build Software",
+  domain: "https://www.buildsoftware.co.za",
+  domainShort: "buildsoftware.co.za",
+  supportEmail: "shane@buildsoftware.co.za",
   defaultUserPassword: "Changeme2024!",
   mainNav: [
     {
@@ -17,7 +17,7 @@ export const siteConfig = {
   ],
   links: {
     dashboard: "/",
-    assets: "/assets",
+    assets: "/home",
     settings: "/settings"
   },
 }
