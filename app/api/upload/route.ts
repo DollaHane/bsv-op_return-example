@@ -145,11 +145,10 @@ export async function POST(req: Request) {
 
       tx.addInput({
         sourceTransaction,
-        sourceOutputIndex: 1, // NEED TO FIGURE OUT HOW THIS WORKS -> IS EITHER 0 OR 1, POSSIBLY CONNECTED TO UNCONFIRMED TX'S IN PIPELINE
+        sourceOutputIndex: 1,
         unlockingScriptTemplate: new P2PKH().unlock(key),
       })
 
-      // SEND A DIFFERANT OP_RETURN FOR EACH DATA TYPE OR "FIELD" -> WILL MAKE DECODING LATER SIMPLER
       tx.addOutput({
         satoshis: 0,
         lockingScript: Script.fromASM(`OP_FALSE OP_RETURN ${textBuffer!.toString("hex")}`), 

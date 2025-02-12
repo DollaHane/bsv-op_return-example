@@ -29,9 +29,10 @@ Create a private key using the code provided in './server/createKey.ts'. This sh
  - A .wif file in the root directory containing the private key.
 
 ```bash
- address: '1E7ZM72qRDSa0rqUhZoMCMb5MAFYFEaKQp'
+ address: '1E7ZM72xxxxxxxxxxxxxxxxxxxxx'
 ```
 
+You will now need to fund the output address in order to send transactions over the network
 For additional info see the BSV SDK Documentation link below.
 
 Copy these variables into a .env file:
